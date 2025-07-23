@@ -33,7 +33,7 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: #8F4991;
+  --bs-primary: #00a1de;
   --bs-secondary: #08958E;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -241,7 +241,7 @@ a {
   text-decoration: underline;
 }
 a:hover {
-  color: #8F4991;
+  color: #00a1de;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
