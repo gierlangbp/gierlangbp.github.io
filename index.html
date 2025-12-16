@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="utf-8" />
@@ -72,10 +72,31 @@
                 <a class="hover:text-primary transition-colors" href="#publication">Publications</a>
                 <a class="hover:text-primary transition-colors" href="#skills">Skills</a>
             </div>
-            <!-- Mobile menu button can be implemented with JS -->
-            <button class="md:hidden text-gray-600">
-                <span class="material-symbols-outlined">menu</span>
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn"
+                class="md:hidden text-gray-600 hover:text-primary transition-colors p-2 rounded-lg hover:bg-gray-50">
+                <span class="material-symbols-outlined text-2xl">menu</span>
             </button>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-16 left-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-lg animate-fade-in-down origin-top">
+            <div class="flex flex-col p-4 space-y-4 font-medium text-gray-600">
+                <a class="block px-4 py-2 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors"
+                    href="#about">About</a>
+                <a class="block px-4 py-2 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors"
+                    href="#experience">Experience</a>
+                <a class="block px-4 py-2 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors"
+                    href="#education">Education</a>
+                <a class="block px-4 py-2 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors"
+                    href="#projects">Projects</a>
+                <a class="block px-4 py-2 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors"
+                    href="#awards">Awards</a>
+                <a class="block px-4 py-2 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors"
+                    href="#publication">Publications</a>
+                <a class="block px-4 py-2 rounded-lg hover:bg-gray-50 hover:text-primary transition-colors"
+                    href="#skills">Skills</a>
+            </div>
         </div>
     </nav>
     <main class="max-w-5xl mx-auto px-6 pt-12 md:pt-20">
@@ -1123,6 +1144,38 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
                 closeModal();
+            }
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Toggle icon
+            const icon = mobileMenuBtn.querySelector('span');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.textContent = 'menu';
+            } else {
+                icon.textContent = 'close';
+            }
+        });
+
+        // Close menu when a link is clicked
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('span').textContent = 'menu';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('span').textContent = 'menu';
             }
         });
     </script>
